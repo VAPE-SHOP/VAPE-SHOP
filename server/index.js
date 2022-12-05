@@ -12,7 +12,7 @@ const PORT = 8080;
 
 app.use('/user', userRoutes);
 
-const db = 'mongodb://localhost/VAPE-STORE';
+const db = 'mongodb+srv://root:root@vape-shop.5xtlkgk.mongodb.net/test';
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then((res) => {
