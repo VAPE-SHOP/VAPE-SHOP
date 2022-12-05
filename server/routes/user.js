@@ -11,5 +11,4 @@ router.get('/:id', getUserById);
 router.post('/signup', signup);
 router.post('/login', login);
 router.patch('/:id', updateUser);
-
-export default router;
+module.exports = router;
