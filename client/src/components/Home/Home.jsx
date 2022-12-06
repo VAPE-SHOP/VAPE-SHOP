@@ -1,11 +1,13 @@
 import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import NavBar from './NavBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Login from './Login';
+import Login from '../Login/Login';
 
 const Home = () => {
-  return <NavBar />;
+  return (
+    <div>
+    </div>
+  );
 };
 
 export default Home;
