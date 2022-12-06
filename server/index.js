@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 
 const userRoutes = require('./routes/user');
 const liquidRoutes = require('./routes/liquid');
-
+const vapeRoutes = require('./routes/vape');
 app.use(express.json());
 app.use(cors());
 
@@ -13,7 +13,7 @@ const PORT = 8080;
 
 app.use('/user', userRoutes);
 app.use('/liquid', liquidRoutes);
-
+app.use('/vape',vapeRoutes)
 const db = 'mongodb+srv://root:root@vape-shop.5xtlkgk.mongodb.net/test';
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
