@@ -1,38 +1,38 @@
 import React from 'react';
-import { MDBCard, MDBCardBody, MDBCardTitle } from 'mdb-react-ui-kit';
-import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 
 import './Liquid.css';
 
 export default function Liquid(props) {
-  console.log(props.liquids);
+  // console.log(props.liquids);
   return (
-    <>
-      {props.liquids.map((e) => (
-        <MDBCard className="liquid-card" key={e._id}>
-          <img src={e.image} />
-          <a>
-            <div
-              className="mask"
-              style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}
-            ></div>
-          </a>
-          <MDBCardBody>
-            <MDBCardTitle>{e.name}</MDBCardTitle>
-            <Link to={'/oneLiquid'}>
-              <Button
-                onClick={() => {
-                  props.one(e._id);
-                }}
-                variant="dark"
-              >
-                More details
-              </Button>
-            </Link>
-          </MDBCardBody>
-        </MDBCard>
-      ))}
-    </>
+    <div>
+      <div className="container mx-auto mt-4 ">
+        <div className="row ">
+          <div className=" d-flex flex-wrap">
+            {props.liquids.map((e) => {
+              return (
+                <div className="card " key={e._id}>
+                  <img src={e.image} className="card-img-top" alt="..." />
+                  <div className="card-body">
+                    <h5 className="card-title">{e.name}</h5>
+                    <Link to={'/oneLiquid'}>
+                      <button
+                        className="btn mr-2"
+                        onClick={() => {
+                          props.one(e._id);
+                        }}
+                      >
+                        <i className="fas fa-link"></i>More Details
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

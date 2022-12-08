@@ -12,13 +12,14 @@ import Footer from './components/Footer/Footer.jsx';
 function App() {
   const [liquid, setLiquid] = useState([]);
   const [oneLiquid, setOneLiquid] = useState([]);
+  console.log(oneLiquid);
   useEffect(() => {
     getLiquids();
   }, []);
 
   let getOneLiquid = (id) => {
     axios.get(`http://localhost:8080/liquid/get-by-id/${id}`).then((result) => {
-      // console.log(result.data);
+      console.log('dataaaaa',result.data);
       setOneLiquid(result.data);
     });
   };
