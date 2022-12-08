@@ -2,7 +2,7 @@ import React from 'react';
 
 import './Liquid.css';
 
-const OneLiquid = ({ liquidOne, handleClick }) => {
+const OneLiquid = ({ liquidOne}) => {
   // console.log(liquidOne);
   return (
     <div>
@@ -15,15 +15,7 @@ const OneLiquid = ({ liquidOne, handleClick }) => {
                 <h4 className="card-title">{liquidOne.name}</h4>
                 <h6>{liquidOne.description}</h6>
                 <h3>{liquidOne.price}DTN</h3>
-                <button
-                  onClick={() => {
-                    handleClick(liquidOne);
-                  }}
-                  href="#"
-                  className="btn mr-2"
-                >
-                  <i className="fas fa-link"></i>Add To Buy
-                </button>
+            
               </div>
             </div>
           </div>

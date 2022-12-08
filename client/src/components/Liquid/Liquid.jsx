@@ -20,13 +20,20 @@ export default function Liquid(props) {
                       <button
                         className="btn mr-2"
                         onClick={() => {
-                          
                           props.one(e._id);
                         }}
                       >
                         <i className="fas fa-link"></i>More Details
                       </button>
                     </Link>
+                    <button
+                      onClick={() => {
+                        props.handleClick(e);
+                      }}
+                      className="btn mr-2"
+                    >
+                      <i className="fas fa-cart-plus"></i>Buy
+                    </button>
                   </div>
                 </div>
               );

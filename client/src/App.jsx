@@ -27,7 +27,7 @@ function App() {
       if (item._id === product._id) isPresent = true;
     });
     if (isPresent) return;
-    setCart([...cart, item]);
+    setCart([item, ...cart]);
   };
 
   let getOneLiquid = (id) => {
@@ -42,6 +42,9 @@ function App() {
       setLiquid(result.data);
     });
   };
+  const handleChange = (item) => {
+    console.log(item);
+  };
 
   return (
     <>
@@ -51,15 +54,23 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route
           path="/liquid"
-          element={<Liquid liquids={liquid} one={getOneLiquid} />}
+          element={
+            <Liquid
+              liquids={liquid}
+              one={getOneLiquid}
+              handleClick={handleClick}
+            />
+          }
         />
         <Route
           path="/oneLiquid"
-          element={
-            <OneLiquid liquidOne={oneLiquid} handleClick={handleClick} />
-          }
+          element={<OneLiquid liquidOne={oneLiquid} />}
         />
-        <Route path="/cart-shop" element={<Cart Cart={cart} />} />
+
+        <Route
+          path="/cart-shop"
+          element={<Cart cart={cart} setCart={setCart} handleChange={handleChange} />}
+        />
       </Routes>
       <Footer />
     </>

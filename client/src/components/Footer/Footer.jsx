@@ -7,6 +7,7 @@ import {
   CDBContainer,
   CDBBox,
 } from 'cdbreact';
+import './Footer.css';
 
 const Footer = () => {
   return (

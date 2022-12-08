@@ -2,8 +2,10 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { Link } from 'react-router-dom';
+
 import './NavBar.css';
-const NavBar = ({size}) => {
+const NavBar = ({ size, setShow }) => {
   return (
     <Navbar collapseOnSelect expand="lg" variant="dark">
       <Container>
@@ -23,13 +25,12 @@ const NavBar = ({size}) => {
             <Nav.Link href="/liquid">liquid Vaping</Nav.Link>
             <Nav.Link href="/login">Login</Nav.Link>
             <Nav.Link href="/sginin">Register</Nav.Link>
-            <Nav.Link href="/cart-shop">
-            <span><i className='fas fa-cart-plus'></i></span>
-            
-            </Nav.Link>
-            <span>
-              {size}
-            </span>
+            <Link to={'/cart-shop'}>
+              <button>
+                <i className="fas fa-cart-plus"></i>
+              </button>
+            </Link>
+            <span className='size-nav'>{size}</span>
           </Nav>
         </Navbar.Collapse>
       </Container>
