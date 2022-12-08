@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import './NavBar.css';
-const NavBar = () => {
+const NavBar = ({size}) => {
   return (
     <Navbar collapseOnSelect expand="lg" variant="dark">
       <Container>
@@ -23,6 +23,13 @@ const NavBar = () => {
             <Nav.Link href="/liquid">liquid Vaping</Nav.Link>
             <Nav.Link href="/login">Login</Nav.Link>
             <Nav.Link href="/sginin">Register</Nav.Link>
+            <Nav.Link href="/cart-shop">
+            <span><i className='fas fa-cart-plus'></i></span>
+            
+            </Nav.Link>
+            <span>
+              {size}
+            </span>
           </Nav>
         </Navbar.Collapse>
       </Container>

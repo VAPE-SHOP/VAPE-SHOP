@@ -20,6 +20,7 @@ export default function Liquid(props) {
                       <button
                         className="btn mr-2"
                         onClick={() => {
+                          
                           props.one(e._id);
                         }}
                       >

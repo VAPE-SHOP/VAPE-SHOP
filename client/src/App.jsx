@@ -8,18 +8,31 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import OneLiquid from './components/Liquid/OneLiquid.jsx';
 import Footer from './components/Footer/Footer.jsx';
+import Cart from './components/Cart/Cart.jsx';
 
 function App() {
   const [liquid, setLiquid] = useState([]);
   const [oneLiquid, setOneLiquid] = useState([]);
-  console.log(oneLiquid);
+  const [cart, setCart] = useState([]);
+
+  console.log('cart', cart);
   useEffect(() => {
     getLiquids();
   }, []);
 
+  let handleClick = (item) => {
+    // setCart(item);
+    let isPresent = false;
+    cart.forEach((product) => {
+      if (item._id === product._id) isPresent = true;
+    });
+    if (isPresent) return;
+    setCart([...cart, item]);
+  };
+
   let getOneLiquid = (id) => {
     axios.get(`http://localhost:8080/liquid/get-by-id/${id}`).then((result) => {
-      console.log('dataaaaa',result.data);
+      // console.log('dataaaaa', result.data);
       setOneLiquid(result.data);
     });
   };
@@ -32,7 +45,7 @@ function App() {
 
   return (
     <>
-      <NavBar />
+      <NavBar size={cart.length} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -42,8 +55,11 @@ function App() {
         />
         <Route
           path="/oneLiquid"
-          element={<OneLiquid liquidOne={oneLiquid} />}
+          element={
+            <OneLiquid liquidOne={oneLiquid} handleClick={handleClick} />
+          }
         />
+        <Route path="/cart-shop" element={<Cart Cart={cart} />} />
       </Routes>
       <Footer />
     </>
