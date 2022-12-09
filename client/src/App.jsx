@@ -42,8 +42,17 @@ function App() {
       setLiquid(result.data);
     });
   };
-  const handleChange = (item) => {
-    console.log(item);
+  const handleChange = (item, d) => {
+    let ind = -1;
+    cart.forEach((data, index) => {
+      if (data._id === item._id) {
+        ind = index;
+      }
+    });
+    const tempArr = cart;
+    tempArr[ind] += d;
+    if (tempArr[ind].__v === 0) tempArr[ind].__v = 1;
+    setCart([...tempArr]);
   };
 
   return (
@@ -69,7 +78,9 @@ function App() {
 
         <Route
           path="/cart-shop"
-          element={<Cart cart={cart} setCart={setCart} handleChange={handleChange} />}
+          element={
+            <Cart cart={cart} setCart={setCart} handleChange={handleChange} />
+          }
         />
       </Routes>
       <Footer />

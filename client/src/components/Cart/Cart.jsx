@@ -10,6 +10,8 @@ const Cart = ({ cart, setCart, handleChange }) => {
   const handlePrice = () => {
     let ans = 0;
     cart.map((e) => {
+      // var amount = e.__v + 1;
+      // setAmount(e.__v + 1);
       ans += amount * e.price;
     });
     setPrice(ans);
@@ -23,6 +25,12 @@ const Cart = ({ cart, setCart, handleChange }) => {
   useEffect(() => {
     handlePrice();
   });
+  const plusOne = () => {
+    setAmount(amount + 1);
+  };
+  const minusOne = () => {
+    setAmount(amount - 1);
+  };
   return (
     <article>
       {cart.map((item) => (
@@ -34,13 +42,20 @@ const Cart = ({ cart, setCart, handleChange }) => {
           <div>
             <button
               onClick={() => {
-                handleChange(item);
+                plusOne();
               }}
             >
               +
             </button>
             <button>{amount}</button>
-            <button> - </button>
+            <button
+              onClick={() => {
+                minusOne();
+              }}
+            >
+              {' '}
+              -{' '}
+            </button>
           </div>
           <div>
             <span>{item.price} </span>
