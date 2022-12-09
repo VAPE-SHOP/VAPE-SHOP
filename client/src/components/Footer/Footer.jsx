@@ -32,7 +32,7 @@ const Footer = () => {
             flat
             color="dark"
             className="p-2"
-            href="https://fr-fr.facebook.com"
+            href="https://fr-fr.facebook.com/Tunisievape/"
           >
             <CDBIcon fab icon="facebook-f" />
           </CDBBtn>
@@ -40,7 +40,7 @@ const Footer = () => {
             flat
             color="dark"
             className="mx-3 p-2"
-            href="https://twitter.com/?lang=fr"
+            href="https://twitter.com/vapeshopgb"
           >
             <CDBIcon fab icon="twitter" />
           </CDBBtn>
@@ -48,7 +48,7 @@ const Footer = () => {
             flat
             color="dark"
             className="p-2"
-            href="https://www.instagram.com/?hl=fr"
+            href="https://www.instagram.com/vapeshop.gb/?hl=fr"
           >
             <CDBIcon fab icon="instagram" />
           </CDBBtn>
