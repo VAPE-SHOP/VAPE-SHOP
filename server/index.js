@@ -15,6 +15,7 @@ app.use('/user', userRoutes);
 app.use('/liquid', liquidRoutes);
 app.use('/vape',vapeRoutes)
 const db = 'mongodb+srv://root:root@vape-shop.5xtlkgk.mongodb.net/test';
+mongoose.set('strictQuery', true)
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then((res) => {
