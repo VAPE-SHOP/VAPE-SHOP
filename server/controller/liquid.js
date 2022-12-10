@@ -4,7 +4,7 @@ const saveLiquid = async (req, res) => {
   const newLiquid = new Liquid({
     name: req.body.name,
     price: req.body.price,
-    descriptin: req.body.descriptin,
+    description: req.body.description,
     image: req.body.image,
   });
   try {
@@ -27,7 +27,18 @@ const findLiquid = async (req, res) => {
   //   });
 };
 
-const findOneLiquid = async (req, res) => {
+const findOneLiquidById = async (req, res) => {
+  const oneLiquid = await Liquid.findById(req.params.id);
+  try {
+    res.status(201).json(oneLiquid);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+  //   await Liquid.find({ name: req.body.name }, (err, result) => {
+  //     err ? res.status(400).send(err) : res.status(200).send(result);
+  //   });
+};
+const findOneLiquidByName = async (req, res) => {
   const oneLiquid = await Liquid.find({ name: req.body.name });
   try {
     res.status(201).json(oneLiquid);
@@ -38,7 +49,6 @@ const findOneLiquid = async (req, res) => {
   //     err ? res.status(400).send(err) : res.status(200).send(result);
   //   });
 };
-
 const updateLiquid = async (req, res) => {
   const update = await Liquid.findByIdAndUpdate(req.params.id, req.body);
   try {
@@ -52,24 +62,23 @@ const updateLiquid = async (req, res) => {
 };
 
 const deleteLiquid = async (req, res) => {
-    await Liquid.findByIdAndDelete(req.params.id)
+  await Liquid.findByIdAndDelete(req.params.id);
 
-    try {
-    res.status(201).json({message:'yayy deleted'});
-        
-    } catch (error) {
+  try {
+    res.status(201).json({ message: 'yayy deleted' });
+  } catch (error) {
     res.status(500).json(error);
-        
-    }
-//   await Liquid.findByIdAndDelete(req.params.id, (err, result) => {
-//     err ? res.status(401).send(err) : res.status(200).send(result);
-//   });
+  }
+  //   await Liquid.findByIdAndDelete(req.params.id, (err, result) => {
+  //     err ? res.status(401).send(err) : res.status(200).send(result);
+  //   });
 };
 
 module.exports = {
   updateLiquid,
   saveLiquid,
   findLiquid,
-  findOneLiquid,
+  findOneLiquidByName,
+  findOneLiquidById,
   deleteLiquid,
 };

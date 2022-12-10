@@ -1,0 +1,10 @@
+.main-carousel {
+  background-color: #27292a;
+  border-radius: 25px;
+  padding: 50px;
+  margin-top: 50px;
+}
+.image-product {
+  background: no-repeat top right/cover;
+  border-radius: 25px;
+}

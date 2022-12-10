@@ -1,0 +1,28 @@
+.hero-main {
+  background: url('../../assets/WallpaperDog-5488779.jpg') no-repeat top
+    right/cover;
+  background-color: #27292a;
+  color: var(--color-light);
+  border-radius: 25px;
+  padding: 50px;
+}
+.hero-text {
+  max-width: 500px;
+}
+.hero-title {
+  font-size: 60px;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+  font-weight: 900;
+  color: #fff;
+}
+.hero-title em {
+  font-style: normal;
+  color: #383bc5;
+}
+.hero-subtitle {
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 25px;
+}
