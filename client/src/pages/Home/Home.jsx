@@ -6,6 +6,7 @@ import Login from '../Login/Login';
 const Home = () => {
   return (
     <div>
+      hello Home
     </div>
   );
 };
