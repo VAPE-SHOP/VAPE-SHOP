@@ -18,7 +18,7 @@ function Register() {
         setIsLoading(true);
         event.preventDefault();
         axios
-          .post("http://localhost:8080/user/signup", form)
+          .post("http://localhost:8080/user/signup",form)
           .then((response) => {
             alert(response.data.message)
             setTimeout(() => {
@@ -41,7 +41,7 @@ function Register() {
           </div>
           <div
             class="p-6 shadow-lg p-3 mb-5 bg-body rounded"
-            style={{ backgroundColor: "white" }}
+            style={{ backgroundColor: "black" }}
           >
             <form onSubmit={onSubmitHandler}>
               <Inputs

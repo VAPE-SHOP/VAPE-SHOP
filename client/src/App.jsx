@@ -94,11 +94,10 @@ function App() {
     }
   };
   const Logout =()=>{
-   
     localStorage.clear();
     setIsconnected(false)
-  
 }
+
 useEffect(() => {
   checkUserToken();
 }, [isConnected]);
