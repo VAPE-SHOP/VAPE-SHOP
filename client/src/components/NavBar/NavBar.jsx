@@ -23,13 +23,23 @@ const NavBar = ({ size, setShow }) => {
             <Link className='nav-link active' to={'/'}>Home</Link>
             <Link className='nav-link active' to={'/vapes'}>Vapes</Link>
             <Link className='nav-link active' to={'/liquid'}>liquid Vaping</Link>
-            <Link className='nav-link active' to={'/login'}>Login</Link>
-            <Link className='nav-link active' to={'/sginin'}>Register</Link>
             <Link className='nav-link active' to={'/About'}>About</Link>
             <Link className='nav-link active' to={'/cart-shop'}>
-              <button>
+
+            {
+               !user.isConnected ? (
+                <>
+            <Link className="nav-link active"   to="/login">Login</Link>
+            <Link className="nav-link active"   to="/register">Register</Link>
+            </>):(
+            <Link  className="nav-link active"   onClick={logoutHandler}>logout</Link>
+            
+            )
+            }
+             <button>
                 <i className="fas fa-cart-plus"></i>
               </button>
+           
             </Link>
             <span className="size-nav">{size}</span>
           </Nav>
