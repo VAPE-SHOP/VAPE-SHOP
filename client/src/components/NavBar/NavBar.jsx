@@ -38,21 +38,21 @@ const NavBar = ({ size, user, Logout }) => {
             <Link className="nav-link active" to={'/About'}>
               About
             </Link>
-            <Link className="nav-link active" to={'/cart-shop'}>
-              {!user.isConnected ? (
-                <>
-                  <Link className="nav-link active" to="/login">
-                    Login
-                  </Link>
-                  <Link className="nav-link active" to="/register">
-                    Register
-                  </Link>
-                </>
-              ) : (
-                <Link className="nav-link active" onClick={logoutHandler}>
-                  logout
+            {!user.isConnected ? (
+              <>
+                <Link className="nav-link active" to="/login">
+                  Login
                 </Link>
-              )}
+                <Link className="nav-link active" to="/register">
+                  Register
+                </Link>
+              </>
+            ) : (
+              <Link className="nav-link active" onClick={logoutHandler}>
+                logout
+              </Link>
+            )}
+            <Link className="nav-link active" to={'/cart-shop'}>
               <button>
                 <i className="fas fa-cart-plus"></i>
               </button>
