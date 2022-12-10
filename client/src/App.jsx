@@ -2,6 +2,7 @@ import { useState,useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import Home from './components/Home/Home.jsx';
 import Login from './components/Login/Login';
+
 import Vapes from './components/Vapes/Vapes.jsx';
 import OneVape from './components/Vapes/OneVape.jsx';
 import PostVape from './components/Vapes/Postvape.jsx';
@@ -14,13 +15,17 @@ import About from './components/About/About.jsx';
 import NavBar from './components/NavBar/NavBar.jsx';
 import Liquid from './components/Liquid/Liquid.jsx';
 
+
 import axios from "axios";
 function App() {
+
   const [Vape, setvape] = useState([]);
   const [oneVape,setoneVape] = useState([])
+
   const [liquid, setLiquid] = useState([]);
   const [oneLiquid, setOneLiquid] = useState([]);
   const [cart, setCart] = useState([]);
+
 
   useEffect(() => {
     getvapes();
@@ -48,6 +53,7 @@ function App() {
     };
  
 
+
   let handleClick = (item) => {
     // setCart(item);
     let isPresent = false;
@@ -65,7 +71,8 @@ function App() {
     });
   };
 
-  
+
+
 
   return (
     <>
@@ -91,6 +98,7 @@ function App() {
         />
         <Route path="/About" element={<About />} />
 
+
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/vapes" element={<Vapes 
@@ -106,6 +114,7 @@ function App() {
           path="/cart-shop"
           element={
             <Cart cart={cart} setCart={setCart}  />
+
           }
         />
       </Routes>
