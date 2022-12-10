@@ -1,7 +1,8 @@
 import React,{useState,useEffect} from "react";
 import { Link } from "react-router-dom";
-import Inputs from "./Inputs";
+
 import axios from 'axios'
+import Inputs from "./Inputs";
 function Login() {
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});

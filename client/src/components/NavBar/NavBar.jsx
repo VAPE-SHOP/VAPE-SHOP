@@ -2,10 +2,16 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 
 import './NavBar.css';
-const NavBar = ({ size, setShow }) => {
+const NavBar = ({ size,user,Logout }) => {
+  const navigate = useNavigate()
+  const logoutHandler =()=>{
+   Logout()
+  navigate('/login')
+  window.location.reload(false);
+  }
   return (
     <Navbar collapseOnSelect expand="lg" variant="dark">
       <Container>
