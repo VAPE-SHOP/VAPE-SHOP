@@ -26,6 +26,15 @@ const allVape =  await Vape.find({})
     res.status(401).send(error)
    }
   } 
+  const findOneVape = async (req, res) => {
+    const onevape = await Vape.findOne({ name: req.params.name });
+    try {
+      res.status(201).json(onevape);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+    
+  };
 
 
 
@@ -59,4 +68,4 @@ const allVape =  await Vape.find({})
 
 
   
-      module.exports = {savevape,get,put,deletevipe}
+      module.exports = {savevape,get,put,deletevipe,findOneVape}

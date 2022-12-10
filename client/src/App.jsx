@@ -1,27 +1,58 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import Home from './components/Home/Home.jsx';
 import Login from './components/Login/Login';
-import NavBar from './components/NavBar/NavBar.jsx';
-import Liquid from './components/Liquid/Liquid.jsx';
-import { useEffect } from 'react';
-import axios from 'axios';
-import OneLiquid from './components/Liquid/OneLiquid.jsx';
+
+import Vapes from './components/Vapes/Vapes.jsx';
+import OneVape from './components/Vapes/OneVape.jsx';
+import PostVape from './components/Vapes/Postvape.jsx';
 import Footer from './components/Footer/Footer.jsx';
-import Cart from './components/Cart/Cart.jsx';
-import About from './components/About/About.jsx';
 import ManageLiquid from './components/Admin/ManageLiquid.jsx';
 import Admin from './components/Admin/Admin.jsx';
+import OneLiquid from './components/Liquid/OneLiquid.jsx';
+import Cart from './components/Cart/Cart.jsx';
+import About from './components/About/About.jsx';
+import NavBar from './components/NavBar/NavBar.jsx';
+import Liquid from './components/Liquid/Liquid.jsx';
 
+
+import axios from "axios";
 function App() {
+
+  const [Vape, setvape] = useState([]);
+  const [oneVape,setoneVape] = useState([])
+
   const [liquid, setLiquid] = useState([]);
   const [oneLiquid, setOneLiquid] = useState([]);
   const [cart, setCart] = useState([]);
 
-  console.log('cart', cart);
+
   useEffect(() => {
+    getvapes();
     getLiquids();
-  }, []);
+
+  },[]);
+  let getLiquids = () => {
+    axios.get(`http://localhost:8080/liquid/getAll`).then((result) => {
+      setLiquid(result.data);
+    });
+  };
+  
+
+  let getOneVape = (name) => {
+    axios.get(`http://localhost:8080/vape/${name}`).then((result) => {
+      setoneVape(result.data);
+    });
+  };
+
+  
+
+  let getvapes = () => {
+    axios.get(`http://localhost:8080/vape/getall`).then((result) => {
+      setvape(result.data)  });
+    };
+ 
+
 
   let handleClick = (item) => {
     // setCart(item);
@@ -40,23 +71,8 @@ function App() {
     });
   };
 
-  let getLiquids = () => {
-    axios.get(`http://localhost:8080/liquid/getAll`).then((result) => {
-      setLiquid(result.data);
-    });
-  };
-  const handleChange = (item, d) => {
-    let ind = -1;
-    cart.forEach((data, index) => {
-      if (data._id === item._id) {
-        ind = index;
-      }
-    });
-    const tempArr = cart;
-    tempArr[ind] += d;
-    if (tempArr[ind].__v === 0) tempArr[ind].__v = 1;
-    setCart([...tempArr]);
-  };
+
+
 
   return (
     <>
@@ -82,10 +98,23 @@ function App() {
         />
         <Route path="/About" element={<About />} />
 
+
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/vapes" element={<Vapes 
+       Vape={Vape}
+       one={getOneVape}
+       handleClick={handleClick}
+      />} />
+      <Route path="/OneVape" element={<OneVape oneVape={oneVape} />} />
+      
+      <Route path="/PostVape" element={<PostVape />} />
+      
         <Route
           path="/cart-shop"
           element={
-            <Cart cart={cart} setCart={setCart} handleChange={handleChange} />
+            <Cart cart={cart} setCart={setCart}  />
+
           }
         />
       </Routes>
@@ -93,5 +122,4 @@ function App() {
     </>
   );
 }
-
-export default App;
+export default App
