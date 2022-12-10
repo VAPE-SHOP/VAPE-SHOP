@@ -20,18 +20,18 @@ const NavBar = ({ size, setShow }) => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/vapes">Vapes</Nav.Link>
-            <Nav.Link href="/liquid">liquid Vaping</Nav.Link>
-            <Nav.Link href="/login">Login</Nav.Link>
-            <Nav.Link href="/sginin">Register</Nav.Link>
-            <Nav.Link href="/About">About</Nav.Link>
-            <Link to={'/cart-shop'}>
+            <Link className='nav-link active' to={'/'}>Home</Link>
+            <Link className='nav-link active' to={'/vapes'}>Vapes</Link>
+            <Link className='nav-link active' to={'/liquid'}>liquid Vaping</Link>
+            <Link className='nav-link active' to={'/login'}>Login</Link>
+            <Link className='nav-link active' to={'/sginin'}>Register</Link>
+            <Link className='nav-link active' to={'/About'}>About</Link>
+            <Link className='nav-link active' to={'/cart-shop'}>
               <button>
                 <i className="fas fa-cart-plus"></i>
               </button>
             </Link>
-            <span className='size-nav'>{size}</span>
+            <span className="size-nav">{size}</span>
           </Nav>
         </Navbar.Collapse>
       </Container>
