@@ -62,7 +62,7 @@ const Login = () => {
                 label="Email"
                 type="text"
                 icon="fa-solid fa-key"
-
+                errors={errors.email}
                 onChange={onChangeHandler}
               />
               <Inputs
@@ -70,6 +70,7 @@ const Login = () => {
                 label="Password"
                 type="password"
                 icon="fa-solid fa-user"
+                errors={errors.password}
                 
                 onChange={onChangeHandler}
               />

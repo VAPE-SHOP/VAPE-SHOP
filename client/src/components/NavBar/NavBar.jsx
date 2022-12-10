@@ -13,7 +13,7 @@ const NavBar = ({ size,user,Logout }) => {
   window.location.reload(false);
   }
   return (
-    <Navbar collapseOnSelect expand="lg" variant="dark">
+    <Navbar  expand="lg" variant="light" bg="light">
       <Container>
         <Navbar.Brand href="/">
           <img
@@ -25,15 +25,28 @@ const NavBar = ({ size,user,Logout }) => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
-            <Link className='nav-link active' to={'/'}>Home</Link>
-            <Link className='nav-link active' to={'/vapes'}>Vapes</Link>
-            <Link className='nav-link active' to={'/liquid'}>liquid Vaping</Link>
-            <Link className='nav-link active' to={'/About'}>About</Link>
-            <Link className='nav-link active' to={'/cart-shop'}>
+          <Nav className="mr-auto">
+          {
+                user.role === "ADMIN" ? (
+                     <Link class="nav-link active" aria-current="page" to="/admin">Admin</Link>
+                 ) : " "
+             }
+            <Link className='nav-link active' to='/'>Home</Link>
+            <Link className='nav-link active' to='/vapes'>Vapes</Link>
+            <Link className='nav-link active' to='/liquid'>liquid Vaping</Link>
+            <Link className='nav-link active' to='/About'>About</Link>
+            <Link className='nav-link active' to='/cart-shop' ><button>
+                <i className="fas fa-cart-plus"></i>
+              </button>
+           
+            <span className="size-nav">{size}</span></Link>           
+
+            </Nav>
+            <Nav className="ms-auto">
 
             {
                !user.isConnected ? (
+
                 <>
             <Link className="nav-link active"   to="/login">Login</Link>
             <Link className="nav-link active"   to="/register">Register</Link>
@@ -42,12 +55,7 @@ const NavBar = ({ size,user,Logout }) => {
             
             )
             }
-             <button>
-                <i className="fas fa-cart-plus"></i>
-              </button>
-           
-            </Link>
-            <span className="size-nav">{size}</span>
+             
           </Nav>
         </Navbar.Collapse>
       </Container>
