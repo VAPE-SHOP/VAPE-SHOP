@@ -14,7 +14,7 @@ const OneLiquid = ({ liquidOne }) => {
               <div className="card-body">
                 <h4 className="card-title">{liquidOne.name}</h4>
                 <h6>{liquidOne.description}</h6>
-                <h3>{liquidOne.price}DTN</h3>
+                <h3>{liquidOne.price}DNT</h3>
               </div>
             </div>
           </div>

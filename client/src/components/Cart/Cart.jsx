@@ -58,8 +58,9 @@ const Cart = ({ cart, setCart, handleChange }) => {
             </button>
           </div>
           <div>
-            <span>{item.price} </span>
+            <span>{item.price} DNT</span>
             <button
+              className="btn"
               onClick={() => {
                 handleRemove(item._id);
               }}

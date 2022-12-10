@@ -25,6 +25,7 @@ const NavBar = ({ size, setShow }) => {
             <Nav.Link href="/liquid">liquid Vaping</Nav.Link>
             <Nav.Link href="/login">Login</Nav.Link>
             <Nav.Link href="/sginin">Register</Nav.Link>
+            <Nav.Link href="/About">About</Nav.Link>
             <Link to={'/cart-shop'}>
               <button>
                 <i className="fas fa-cart-plus"></i>

@@ -10,13 +10,13 @@ const Hero = () => {
           <em> Browse </em>Our Popular Vapes and Liquid Here{' '}
         </h4>
         <div className="main-button">
-          <a href="/vapes" className="btn mr-2">
+          <a href="/vapes">
             {' '}
             <i className="fas fa-link"></i>Click To See Vapes
           </a>
           <br />
           <br />
-          <a href="/liquid" className="btn mr-2">
+          <a href="/liquid">
             {' '}
             <i className="fas fa-link"></i> Click To See Liquid Vaping{' '}
           </a>
