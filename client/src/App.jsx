@@ -107,7 +107,7 @@ useEffect(() => {
 
   return (
     <BrowserRouter>
-    <div class="bg-light" style={{height: "100vh"}}>
+    <div className="bg-black" style={{height: "100vh"}}>
       <NavBar size={cart.length} user={user} Logout={Logout}/>
       <Routes>
         <Route path="/" element={<PriveteRouter user={user}><Home/></PriveteRouter>} />
