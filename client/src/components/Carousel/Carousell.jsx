@@ -9,7 +9,7 @@ const Carousell = () => {
         <Carousel fade>
           <Carousel.Item>
             <img
-              className="d-block w-100"
+              className="d-block w-100  image-product"
               src="https://www.innokin.com/hubfs/What%20Are%20the%20Different%20Types%20of%20Vapes.jpg"
               alt="First slide"
             />
@@ -23,8 +23,8 @@ const Carousell = () => {
           </Carousel.Item>
           <Carousel.Item>
             <img
-              className="d-block w-100"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6GFWmmC5b2okcUHbdJuGtYZBxg4ughtnMlNJAd1gS2OJegSfPkgrM34P3Ek_KBXbevVs&usqp=CAU"
+              className="d-block w-100  image-product"
+              src="https://awsimages.detik.net.id/community/media/visual/2020/02/14/a88e39f3-b587-4ac3-8d02-95bd0a909194_169.jpeg?w=700&q=90"
               alt="Third slide"
             />
           </Carousel.Item>

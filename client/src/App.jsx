@@ -9,6 +9,9 @@ import axios from 'axios';
 import OneLiquid from './components/Liquid/OneLiquid.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import Cart from './components/Cart/Cart.jsx';
+import About from './components/About/About.jsx';
+import ManageLiquid from './components/Admin/ManageLiquid.jsx';
+import Admin from './components/Admin/Admin.jsx';
 
 function App() {
   const [liquid, setLiquid] = useState([]);
@@ -60,6 +63,8 @@ function App() {
       <NavBar size={cart.length} />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/manageLiquid" element={<ManageLiquid liquid={liquid} />} />
         <Route path="/login" element={<Login />} />
         <Route
           path="/liquid"
@@ -75,6 +80,7 @@ function App() {
           path="/oneLiquid"
           element={<OneLiquid liquidOne={oneLiquid} />}
         />
+        <Route path="/About" element={<About />} />
 
         <Route
           path="/cart-shop"
