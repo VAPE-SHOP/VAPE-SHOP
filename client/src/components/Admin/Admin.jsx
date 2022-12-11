@@ -12,7 +12,7 @@ const Admin = () => {
           <h4>
             <b>Vapes </b>
           </h4>
-          <a className="btn mr-2" >
+          <a className="btn mr-2" href='/manageVapes'>
             <i className="fas fa-link"></i>Manage Vapes
           </a>
         </div>

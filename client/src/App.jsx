@@ -23,8 +23,9 @@ import Liquid from './components/Liquid/Liquid.jsx';
 import axios from 'axios';
 import AddLiquid from './components/Admin/AddLiquid.jsx';
 import UpdateLiquid from './components/Admin/UpdateLiquid.jsx';
+import ManageVapes from './components/Admin/ManageVapes.jsx';
 function App() {
-  const [Vape, setvape] = useState([]);
+  const [vapes, setVapes] = useState([]);
   const [oneVape, setoneVape] = useState([]);
   const [liquid, setLiquid] = useState([]);
   const [oneLiquid, setOneLiquid] = useState([]);
@@ -32,7 +33,7 @@ function App() {
   const [isConnected, setIsconnected] = useState(false);
   const [role, setRole] = useState();
   const [idss, setId] = useState();
-  console.log(idss);
+  // console.log(idss);
 
   const user = {
     isConnected: isConnected,
@@ -81,7 +82,7 @@ function App() {
 
   let getvapes = () => {
     axios.get(`http://localhost:8080/vape/getall`).then((result) => {
-      setvape(result.data);
+      setVapes(result.data);
     });
   };
 
@@ -152,8 +153,9 @@ function App() {
               />
             }
           />
+          <Route path="/manageVapes" element={<ManageVapes />} />
           <Route path="/add" element={<AddLiquid add={addLiquid} />} />
-          <Route path="/update" element={<UpdateLiquid up={updateLiquid}/>} />
+          <Route path="/update" element={<UpdateLiquid up={updateLiquid} />} />
           <Route
             path="/liquid"
             element={
@@ -203,7 +205,11 @@ function App() {
             path="/vapes"
             element={
               <PriveteRouter user={user}>
-                <Vapes Vape={Vape} one={getOneVape} handleClick={handleClick} />{' '}
+                <Vapes
+                  allVapes={vapes}
+                  one={getOneVape}
+                  handleClick={handleClick}
+                />{' '}
               </PriveteRouter>
             }
           />
