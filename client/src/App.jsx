@@ -135,7 +135,7 @@ useEffect(() => {
 
        
       <Route path="/" element={<Home />} />
-      <Route path="/login" element={<ForceRedirect user={user}><Login /></ForceRedirect>} />
+      {/* <Route path="/login" element={<ForceRedirect user={user}><Login /></ForceRedirect>} /> */}
       <Route  path="/register" element={<ForceRedirect user={user}><Register /></ForceRedirect>}/>
        
       <Route path="/vapes" element={<PriveteRouter user={user}><Vapes 
