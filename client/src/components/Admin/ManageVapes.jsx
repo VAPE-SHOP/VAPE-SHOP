@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ManageVapes = (props) => {
   return <article>
   <a className="btn" href="/add">
     <i className="fas fa-link"></i>Add liquid
   </a>
-  {props.liquid.map((e) => (
+  {props.allVapes.map((e) => (
     <div className="cart-box" key={e._id}>
       <div className="cart-img">
         <img src={e.image} alt="" />
