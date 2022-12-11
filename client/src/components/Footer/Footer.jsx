@@ -11,7 +11,7 @@ import './Footer.css';
 
 const Footer = () => {
   return (
-    <CDBFooter className="shadow">
+    <CDBFooter className="shadow ">
       <CDBBox
         display="flex"
         justifyContent="between"
