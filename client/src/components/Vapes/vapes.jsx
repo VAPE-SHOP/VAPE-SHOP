@@ -6,7 +6,7 @@ const Vapes = (props) => {
   return (
     <div> 
        <div className="App">
-      <Search placeholder="Enter a Book Name..." data={props.Vape} />
+      <Search placeholder="Enter a Book Name..." data={props.allVapes} />
     </div>
       <div className="container mx-auto mt-4 ">
         <div className="row ">

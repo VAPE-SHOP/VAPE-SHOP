@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import CloseIcon from "@material-ui/icons/Close";
-
+import './Liquid.css'
 function SearchBar({ placeholder, data }) {
+  console.log(data,'heyyy')
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
 
@@ -10,6 +11,7 @@ function SearchBar({ placeholder, data }) {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
     const newFilter = data.filter((value) => {
+      console.log(data,'hyhyhy')
       return value.name.toLowerCase().includes(searchWord.toLowerCase());
     });
 
