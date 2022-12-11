@@ -1,12 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import  Search  from "./Search"
 import './Liquid.css';
 
 export default function Liquid(props) {
   // console.log(props.liquids);
   return (
     <div>
+       <div className="App">
+      <Search placeholder="Enter a Book Name..." data={props.liquids} />
+    </div>
       <div className="container mx-auto mt-4 ">
         <div className="row ">
           <div className=" d-flex flex-wrap">

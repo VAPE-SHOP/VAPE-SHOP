@@ -34,6 +34,8 @@ function App() {
   const [isConnected, setIsconnected] = useState(false);
   const [role, setRole] = useState();
   const [idss, setId] = useState();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
   // console.log(idss);
 
   const user = {
@@ -136,6 +138,21 @@ function App() {
     checkUserToken();
   }, [isConnected]);
 
+  const searchHandler = (searchTerm) => {
+    setSearchTerm(searchTerm);
+    if (searchTerm !== "") {
+      const newContactList = Vape.filter(() => {
+        return Object.values(contact)
+          .join(" ")
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase());
+      });
+      setSearchResults(newContactList);
+    } else {
+      setSearchResults(contacts);
+    }
+  };
+
   return (
     <BrowserRouter>
       <div className="bg-black" style={{ height: '100vh' }}>
@@ -200,6 +217,7 @@ function App() {
               </PriveteRouter>
             }
           />
+           
 
           {/* <Route path="/" element={<Home />} /> */}
           <Route
@@ -227,6 +245,8 @@ function App() {
                   allVapes={vapes}
                   one={getOneVape}
                   handleClick={handleClick}
+                  term={searchTerm}
+                  searchKeyword={searchHandler}
                 />{' '}
               </PriveteRouter>
             }
@@ -238,7 +258,8 @@ function App() {
                 <OneVape oneVape={oneVape} />
               </PriveteRouter>
             }
-          />
+          /> 
+           
 
           <Route
             path="/PostVape"
