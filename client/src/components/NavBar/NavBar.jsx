@@ -2,18 +2,18 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link, useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import './NavBar.css';
-const NavBar = ({ size,user,Logout }) => {
-  const navigate = useNavigate()
-  const logoutHandler =()=>{
-   Logout()
-  navigate('/login')
-  window.location.reload(false);
-  }
+const NavBar = ({ size, user, Logout }) => {
+  const navigate = useNavigate();
+  const logoutHandler = () => {
+    Logout();
+    navigate('/login');
+    window.location.reload(false);
+  };
   return (
-    <Navbar collapseOnSelect expand="lg" variant="dark">
+    <Navbar expand="lg" variant="dark" bg="black">
       <Container>
         <Navbar.Brand href="/">
           <img
@@ -25,29 +25,49 @@ const NavBar = ({ size,user,Logout }) => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
-            <Link className='nav-link active' to={'/'}>Home</Link>
-            <Link className='nav-link active' to={'/vapes'}>Vapes</Link>
-            <Link className='nav-link active' to={'/liquid'}>liquid Vaping</Link>
-            <Link className='nav-link active' to={'/About'}>About</Link>
-            <Link className='nav-link active' to={'/cart-shop'}>
-
-            {
-               !user.isConnected ? (
-                <>
-            <Link className="nav-link active"   to="/login">Login</Link>
-            <Link className="nav-link active"   to="/register">Register</Link>
-            </>):(
-            <Link  className="nav-link active"   onClick={logoutHandler}>logout</Link>
-            
-            )
-            }
-             <button>
+          <Nav className="mr-auto">
+            {user.role === 'ADMIN' ? (
+              <Link class="nav-link active" aria-current="page" to="/admin">
+                Admin
+              </Link>
+            ) : (
+              ' '
+            )}
+            <Link className="nav-link active" to="/">
+              Home
+            </Link>
+            <Link className="nav-link active" to="/vapes">
+              Vapes
+            </Link>
+            <Link className="nav-link active" to="/liquid">
+              liquid Vaping
+            </Link>
+            <Link className="nav-link active" to="/About">
+              About
+            </Link>
+            <Link className="nav-link active" to="/cart-shop">
+              <button>
                 <i className="fas fa-cart-plus"></i>
               </button>
-           
+
+              <span className="size-nav">{size}</span>
             </Link>
-            <span className="size-nav">{size}</span>
+          </Nav>
+          <Nav className="ms-auto">
+            {!user.isConnected ? (
+              <>
+                <Link className="nav-link active" to="/login">
+                  Login
+                </Link>
+                <Link className="nav-link active" to="/register">
+                  Register
+                </Link>
+              </>
+            ) : (
+              <Link className="nav-link active" onClick={logoutHandler}>
+                logout
+              </Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-const AddLiquid = ({ add }) => {
+const UpdateLiquid = ({ up }) => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState();
   const [description, setDescription] = useState('');
@@ -58,14 +58,14 @@ const AddLiquid = ({ add }) => {
         <Button
           variant="primary"
           onClick={() => {
-            add({ name, price, description, image });
+            return up({ name, price, description, image });
           }}
         >
-          Add
+          Update
         </Button>
       </Form>
     </div>
   );
 };
 
-export default AddLiquid;
+export default UpdateLiquid;

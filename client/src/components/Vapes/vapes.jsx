@@ -1,9 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import "./Vapes.css"
+import  Search  from './Search.jsx'
 const Vapes = (props) => {
   return (
-    <div>
+    <div> 
+       <div className="App">
+      <Search placeholder="Enter a Book Name..." data={props.Vape} />
+    </div>
       <div className="container mx-auto mt-4 ">
         <div className="row ">
           <div className=" d-flex flex-wrap">

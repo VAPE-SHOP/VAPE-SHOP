@@ -1,7 +1,8 @@
 import React,{useState} from 'react'
 import axios from 'axios'
 function Postvape() {
-    const [name,Setname] = useState("")
+  
+  const [name,Setname] = useState("")
   const [description,Setdescription] = useState("")
   const [price,Setprice] = useState("")
   const [image,Setimage] = useState("")

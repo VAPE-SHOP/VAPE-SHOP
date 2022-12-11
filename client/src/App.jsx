@@ -1,70 +1,91 @@
-import { useState,useEffect } from 'react'; //
-import {BrowserRouter,Routes,Route} from "react-router-dom"
+import { useState, useEffect } from 'react'; //
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/Home/Home.jsx'; //
-import Login from './components/Login/Login'; // 
-
+import Login from './components/Login/Login'; //
 import Vapes from './components/Vapes/Vapes.jsx'; //
-import Register from '../componet/Register.jsx'; //
-import Admin  from './components/Admin/Admin.jsx'; // 
+import Register from './components/Register/Register.jsx'; //
+import Admin from './components/Admin/Admin.jsx'; //
 import NotFound from './components/NotFound/NotFound.jsx'; //
 import NoAccess from './components/NoAccess/NoAccess.jsx'; //
-import AdminRouter from '../componet/AdminRouter.jsx';//
-import PriveteRouter from '../componet/PriveteRouter.jsx'; // 
+import AdminRouter from '../componet/AdminRouter.jsx'; //
+import PriveteRouter from '../componet/PriveteRouter.jsx'; //
 import ForceRedirect from '../componet/ForceRedirect.jsx'; //
 import OneVape from './components/Vapes/OneVape.jsx';
 import PostVape from './components/Vapes/Postvape.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import ManageLiquid from './components/Admin/ManageLiquid.jsx';
-
 import OneLiquid from './components/Liquid/OneLiquid.jsx';
 import Cart from './components/Cart/Cart.jsx';
 import About from './components/About/About.jsx';
 import NavBar from './components/NavBar/NavBar.jsx'; //
 import Liquid from './components/Liquid/Liquid.jsx';
 
-
-import axios from "axios";
+import axios from 'axios';
+import AddLiquid from './components/Admin/AddLiquid.jsx';
+import UpdateLiquid from './components/Admin/UpdateLiquid.jsx';
 function App() {
-
   const [Vape, setvape] = useState([]);
-  const [oneVape,setoneVape] = useState([])
-
+  const [oneVape, setoneVape] = useState([]);
   const [liquid, setLiquid] = useState([]);
   const [oneLiquid, setOneLiquid] = useState([]);
   const [cart, setCart] = useState([]);
-  const [isConnected ,setIsconnected]=useState(false)
-  const [role ,setRole]=useState()
-    const user={
-    isConnected:isConnected,
-    role:role
-  }
-  
+  const [isConnected, setIsconnected] = useState(false);
+  const [role, setRole] = useState();
+  const [idss, setId] = useState();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  console.log(idss);
+
+  const user = {
+    isConnected: isConnected,
+    role: role,
+  };
+
   useEffect(() => {
     getvapes();
     getLiquids();
-
-  },[]);
+  }, []);
   let getLiquids = () => {
     axios.get(`http://localhost:8080/liquid/getAll`).then((result) => {
       setLiquid(result.data);
     });
   };
-  
+
+  const addLiquid = (e) => {
+    axios.post(`http://localhost:8080/liquid/add`, e).then((result) => {
+      window.location.reload();
+      console.log(result.data);
+    });
+  };
 
   let getOneVape = (name) => {
     axios.get(`http://localhost:8080/vape/${name}`).then((result) => {
       setoneVape(result.data);
     });
   };
+  const deleteLiquid = (id) => {
+    console.error('deleted', id);
+    axios.delete(`http://localhost:8080/liquid/${id}`).then((result) => {
+      window.location.reload();
 
-  
+      console.log('yayyy deleted');
+    });
+  };
+  const getId = (e) => {
+    setId(e);
+  };
+  const updateLiquid = (e) => {
+    axios.put(`http://localhost:8080/liquid/${idss}`, e).then((result) => {
+      window.location.reload();
+      console.log('yayyy Updateted');
+    });
+  };
 
   let getvapes = () => {
     axios.get(`http://localhost:8080/vape/getall`).then((result) => {
-      setvape(result.data)  });
-    };
- 
-
+      setvape(result.data);
+    });
+  };
 
   let handleClick = (item) => {
     // setCart(item);
@@ -83,81 +104,162 @@ function App() {
     });
   };
   const checkUserToken = () => {
-    if (typeof window !== "undefined") {
-      const user = JSON.parse(localStorage.getItem("role"));
+    if (typeof window !== 'undefined') {
+      const user = JSON.parse(localStorage.getItem('role'));
       if (user) {
         setIsconnected(true);
-        setRole(user)
+        setRole(user);
       } else {
         setIsconnected(false);
       }
     }
   };
-  const Logout =()=>{
-   
+  const Logout = () => {
     localStorage.clear();
-    setIsconnected(false)
-  
-}
-useEffect(() => {
-  checkUserToken();
-}, [isConnected]);
+    setIsconnected(false);
+  };
 
+  useEffect(() => {
+    checkUserToken();
+  }, [isConnected]);
 
-
+  const searchHandler = (searchTerm) => {
+    setSearchTerm(searchTerm);
+    if (searchTerm !== "") {
+      const newContactList = Vape.filter(() => {
+        return Object.values(contact)
+          .join(" ")
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase());
+      });
+      setSearchResults(newContactList);
+    } else {
+      setSearchResults(contacts);
+    }
+  };
 
   return (
     <BrowserRouter>
-    <div class="bg-light" style={{height: "100vh"}}>
-      <NavBar size={cart.length} user={user} Logout={Logout}/>
-      <Routes>
-        <Route path="/" element={<PriveteRouter user={user}><Home/></PriveteRouter>} />
-        <Route path="/admin" element={ <AdminRouter user={user}><Admin /> </AdminRouter>} />
-        <Route path="/manageLiquid" element={<ManageLiquid liquid={liquid} />} />
-        <Route path="/login" element={<Login />} />
-        <Route
-          path="/liquid"
-          element={<PriveteRouter user={user}>
-            <Liquid
-              liquids={liquid}
-              one={getOneLiquid}
-              handleClick={handleClick}
-            />
-          </PriveteRouter>}
-        />
-        <Route  path="/*" element={<NotFound />}/>
-        <Route  path="/noaccess" element={<NoAccess />}/>
-        <Route
-          path="/oneLiquid"
-          element={<OneLiquid liquidOne={oneLiquid} />}
-        />
-        <Route path="/About" element={<About />} />
+      <div className="bg-black" style={{ height: '100vh' }}>
+        <NavBar size={cart.length} user={user} Logout={Logout} />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <PriveteRouter user={user}>
+                <Home />
+              </PriveteRouter>
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              <AdminRouter user={user}>
+                <Admin />{' '}
+              </AdminRouter>
+            }
+          />
+          <Route
+            path="/manageLiquid"
+            element={
+              <ManageLiquid
+                liquid={liquid}
+                remove={deleteLiquid}
+                getId={getId}
+              />
+            }
+          />
+          <Route path="/add" element={<AddLiquid add={addLiquid} />} />
+          <Route path="/update" element={<UpdateLiquid up={updateLiquid}/>} />
+          <Route
+            path="/liquid"
+            element={
+              <PriveteRouter user={user}>
+                <Liquid
+                  liquids={liquid}
+                  one={getOneLiquid}
+                  handleClick={handleClick}
+                />
+              </PriveteRouter>
+            }
+          />
+          <Route path="/*" element={<NotFound />} />
+          <Route path="/noaccess" element={<NoAccess />} />
+          <Route
+            path="/oneLiquid"
+            element={<OneLiquid liquidOne={oneLiquid} />}
+          />
+          <Route
+            path="/About"
+            element={
+              <PriveteRouter user={user}>
+                <About />
+              </PriveteRouter>
+            }
+          />
+           
 
-       
-      <Route path="/" element={<Home />} />
-      {/* <Route path="/login" element={<ForceRedirect user={user}><Login /></ForceRedirect>} /> */}
-      <Route  path="/register" element={<ForceRedirect user={user}><Register /></ForceRedirect>}/>
-       
-      <Route path="/vapes" element={<PriveteRouter user={user}><Vapes 
-       Vape={Vape}
-       one={getOneVape}
-       handleClick={handleClick}
-      /> </PriveteRouter> } />
-      <Route path="/OneVape" element={<OneVape oneVape={oneVape} />} />
-      
-      <Route path="/PostVape" element={<PostVape />} />
-      
-        <Route
-          path="/cart-shop"
-          element={
-            <Cart cart={cart} setCart={setCart}  />
+          {/* <Route path="/" element={<Home />} /> */}
+          <Route
+            path="/login"
+            element={
+              <ForceRedirect user={user}>
+                <Login />
+              </ForceRedirect>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <ForceRedirect user={user}>
+                <Register />
+              </ForceRedirect>
+            }
+          />
 
-          }
-        />
-      </Routes>
-      <Footer />
-    </div>
+          <Route
+            path="/vapes"
+            element={
+              <PriveteRouter user={user}>
+                <Vapes Vape={Vape} one={getOneVape} handleClick={handleClick} 
+                term={searchTerm}
+                searchKeyword={searchHandler}
+                
+                />{' '}
+              </PriveteRouter>
+            }
+          />
+          <Route
+            path="/OneVape"
+            element={
+              <PriveteRouter user={user}>
+                <OneVape oneVape={oneVape} />
+              </PriveteRouter>
+            }
+          /> 
+           
+
+          <Route
+            path="/PostVape"
+            element={
+              <PriveteRouter user={user}>
+                <PostVape />
+              </PriveteRouter>
+            }
+          />
+
+          <Route
+            path="/cart-shop"
+            element={
+              <PriveteRouter user={user}>
+                <Cart cart={cart} setCart={setCart} />
+              </PriveteRouter>
+            }
+          />
+        </Routes>
+        <Footer />
+      </div>
     </BrowserRouter>
   );
 }
-export default App
+export default App;
