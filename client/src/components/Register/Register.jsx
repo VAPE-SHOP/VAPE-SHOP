@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Inputs from '../../componet/Inputs';
 import axios from 'axios';
+import Inputs from '../../../componet/Inputs';
 function Register() {
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
+
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
+  console.log('====================================');
+  console.log(errors);
+  console.log('====================================');
   const onChangeHandler = (event) => {
     setForm({
       ...form,
@@ -14,21 +17,18 @@ function Register() {
     });
   };
 
-  const onSubmitHandler = (event) => {
-    setIsLoading(true);
+  const SubmitHandler = (event) => {
     event.preventDefault();
     axios
       .post('http://localhost:8080/user/signup', form)
       .then((response) => {
         alert(response.data.message);
         setTimeout(() => {
-          setIsLoading(false);
           navigate('/login');
         }, 1000);
       })
       .catch((err) => {
         setErrors(err.response.data);
-        setIsLoading(false);
       });
   };
   return (
@@ -43,13 +43,14 @@ function Register() {
             className="p-6 shadow-lg p-3 mb-5 bg-body rounded"
             style={{ backgroundColor: 'black' }}
           >
-            <form onSubmit={onSubmitHandler}>
+            <form onSubmit={SubmitHandler}>
               <Inputs
                 name="name"
                 label="Name"
                 type="text"
                 icon="fa-solid fa-user"
                 onChange={onChangeHandler}
+                errors={errors.name}
               />
               <Inputs
                 name="email"
@@ -57,6 +58,7 @@ function Register() {
                 type="text"
                 icon="fa-solid fa-key"
                 onChange={onChangeHandler}
+                errors={errors.email}
               />
               <Inputs
                 name="password"
@@ -64,6 +66,7 @@ function Register() {
                 type="password"
                 icon="fa-solid fa-user"
                 onChange={onChangeHandler}
+                errors={errors.password}
               />
               <Inputs
                 name="confirm"
@@ -71,6 +74,7 @@ function Register() {
                 type="text"
                 icon="fa-solid fa-user"
                 onChange={onChangeHandler}
+                errors={errors.confirm}
               />
               <div className="d-flex justify-content-between">
                 <button type="submit" className="btn btn-outline-primary">
