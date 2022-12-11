@@ -1,0 +1,21 @@
+# data
+
+vape {
+---name : Kit X-Priv TFV12 Prince
+---price: 250
+---description :Le kit X-Priv TFV12 Prince de Smoktech, c'est la parfaite combinaison de la puissance et de l'élégance. Ce magnifique kit est composé du mod X-Priv 225W à double accus et de l'imposant atomiseur sub-ohm TFV12 Prince. Celui-ci est livré avec les résistances V12 Prince Q4 et T10. La box du kit X-Priv est classe et ergonomique, avec un bel écran de 2" et une toute nouvelle interface graphique encore plus intuitive.
+---image:https://www.lepetitvapoteur.com/29147-large_default/kit-x-priv-tfv12-prince.jpg
+
+
+
+}
+
+
+liquid {
+---name:  Coffee Bean Tobacco E-Juice
+---price: 25
+---description: Coffee Bean Tobacco E-Juice is the ideal vape for morning coffee drinkers. It has an aromatic and strong coffee taste with satisfying hints of tobacco.Will I like it?
+True to the taste of your freshly brewed morning cuppa with a mild tobacco exhale, coffee and tobacco connoisseurs alike will savor this bold flavor.
+---image:https://vaporvapes.com/wp-content/uploads/2019/04/Coffee_Bean_Tobacco.jpg
+
+}

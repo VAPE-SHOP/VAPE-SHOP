@@ -24,6 +24,7 @@ import axios from 'axios';
 import AddLiquid from './components/Admin/AddLiquid.jsx';
 import UpdateLiquid from './components/Admin/UpdateLiquid.jsx';
 import ManageVapes from './components/Admin/ManageVapes.jsx';
+import AddVape from './components/Admin/AddVape.jsx';
 function App() {
   const [vapes, setVapes] = useState([]);
   const [oneVape, setoneVape] = useState([]);
@@ -57,6 +58,12 @@ function App() {
     });
   };
 
+  const addVape=(e)=>{
+    axios.post(`http://localhost:8080/vape/add`,e).then((result) => {
+      window.location.reload();
+      console.log(result.data);
+    });
+  }
   let getOneVape = (name) => {
     axios.get(`http://localhost:8080/vape/${name}`).then((result) => {
       setoneVape(result.data);
@@ -70,6 +77,13 @@ function App() {
       console.log('yayyy deleted');
     });
   };
+  const deleteVape = (id) => {
+    axios.delete(`http://localhost:8080/vape/${id}`).then((result) => {
+      window.location.reload();
+      console.log('yayy deleted');
+    });
+  };
+
   const getId = (e) => {
     setId(e);
   };
@@ -153,8 +167,12 @@ function App() {
               />
             }
           />
-          <Route path="/manageVapes" element={<ManageVapes allVapes={vapes}/>} />
+          <Route
+            path="/manageVapes"
+            element={<ManageVapes allVapes={vapes} remove={deleteVape}/>}
+          />
           <Route path="/add" element={<AddLiquid add={addLiquid} />} />
+          <Route path='/addVape' element={<AddVape add={addVape}/>}/>
           <Route path="/update" element={<UpdateLiquid up={updateLiquid} />} />
           <Route
             path="/liquid"
