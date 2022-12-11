@@ -13,7 +13,7 @@ const NavBar = ({ size, user, Logout }) => {
     window.location.reload(false);
   };
   return (
-    <Navbar expand="lg" variant="light" bg="light">
+    <Navbar expand="lg" variant="dark" bg="black">
       <Container>
         <Navbar.Brand href="/">
           <img
