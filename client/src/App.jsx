@@ -36,7 +36,7 @@ function App() {
   const [idss, setId] = useState();
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  console.log(idss);
+  // console.log(idss);
 
   const user = {
     isConnected: isConnected,
