@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Hero.css';
 
 const Hero = () => {
@@ -10,16 +11,20 @@ const Hero = () => {
           <em> Browse </em>Our Popular Vapes and Liquid Here{' '}
         </h4>
         <div className="main-button">
-          <a href="/vapes">
-            {' '}
+          <Link to="/vapes">
+          <a>
             <i className="fas fa-link"></i>Click To See Vapes
           </a>
+          </Link>
+         
           <br />
           <br />
+          <Link to="liquid">
           <a href="/liquid">
-            {' '}
-            <i className="fas fa-link"></i> Click To See Liquid Vaping{' '}
+            <i className="fas fa-link"></i> Click To See Liquid Vaping
           </a>
+          </Link>
+          
         </div>
       </div>
     </div>

@@ -153,7 +153,7 @@ function App() {
               />
             }
           />
-          <Route path="/manageVapes" element={<ManageVapes />} />
+          <Route path="/manageVapes" element={<ManageVapes allVapes={vapes}/>} />
           <Route path="/add" element={<AddLiquid add={addLiquid} />} />
           <Route path="/update" element={<UpdateLiquid up={updateLiquid} />} />
           <Route
