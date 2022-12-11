@@ -70,6 +70,13 @@ function App() {
       console.log('yayyy deleted');
     });
   };
+  const deleteVape = (id) => {
+    axios.delete(`http://localhost:8080/vape/${id}`).then((result) => {
+      window.location.reload();
+      console.log('yayy deleted');
+    });
+  };
+
   const getId = (e) => {
     setId(e);
   };
@@ -153,7 +160,10 @@ function App() {
               />
             }
           />
-          <Route path="/manageVapes" element={<ManageVapes allVapes={vapes}/>} />
+          <Route
+            path="/manageVapes"
+            element={<ManageVapes allVapes={vapes} remove={deleteVape}/>}
+          />
           <Route path="/add" element={<AddLiquid add={addLiquid} />} />
           <Route path="/update" element={<UpdateLiquid up={updateLiquid} />} />
           <Route
