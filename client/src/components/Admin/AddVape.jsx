@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-const AddLiquid = ({ add }) => {
+const AddVape = ({ add }) => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState();
   const [description, setDescription] = useState('');
@@ -11,7 +11,7 @@ const AddLiquid = ({ add }) => {
     <div className="container">
       <Form>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Brand or Name liquid</Form.Label>
+          <Form.Label>Brand - Vape</Form.Label>
           <Form.Control
             type="text"
             placeholder="Brand"
@@ -61,11 +61,11 @@ const AddLiquid = ({ add }) => {
             add({ name, price, description, image });
           }}
         >
-          Add Liquid
+          Add Vape
         </Button>
       </Form>
     </div>
   );
 };
 
-export default AddLiquid;
+export default AddVape;

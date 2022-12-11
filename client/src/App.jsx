@@ -23,8 +23,10 @@ import Liquid from './components/Liquid/Liquid.jsx';
 import axios from 'axios';
 import AddLiquid from './components/Admin/AddLiquid.jsx';
 import UpdateLiquid from './components/Admin/UpdateLiquid.jsx';
+import ManageVapes from './components/Admin/ManageVapes.jsx';
+import AddVape from './components/Admin/AddVape.jsx';
 function App() {
-  const [Vape, setvape] = useState([]);
+  const [vapes, setVapes] = useState([]);
   const [oneVape, setoneVape] = useState([]);
   const [liquid, setLiquid] = useState([]);
   const [oneLiquid, setOneLiquid] = useState([]);
@@ -58,6 +60,12 @@ function App() {
     });
   };
 
+  const addVape=(e)=>{
+    axios.post(`http://localhost:8080/vape/add`,e).then((result) => {
+      window.location.reload();
+      console.log(result.data);
+    });
+  }
   let getOneVape = (name) => {
     axios.get(`http://localhost:8080/vape/${name}`).then((result) => {
       setoneVape(result.data);
@@ -71,6 +79,13 @@ function App() {
       console.log('yayyy deleted');
     });
   };
+  const deleteVape = (id) => {
+    axios.delete(`http://localhost:8080/vape/${id}`).then((result) => {
+      window.location.reload();
+      console.log('yayy deleted');
+    });
+  };
+
   const getId = (e) => {
     setId(e);
   };
@@ -83,7 +98,7 @@ function App() {
 
   let getvapes = () => {
     axios.get(`http://localhost:8080/vape/getall`).then((result) => {
-      setvape(result.data);
+      setVapes(result.data);
     });
   };
 
@@ -169,8 +184,13 @@ function App() {
               />
             }
           />
+          <Route
+            path="/manageVapes"
+            element={<ManageVapes allVapes={vapes} remove={deleteVape}/>}
+          />
           <Route path="/add" element={<AddLiquid add={addLiquid} />} />
-          <Route path="/update" element={<UpdateLiquid up={updateLiquid}/>} />
+          <Route path='/addVape' element={<AddVape add={addVape}/>}/>
+          <Route path="/update" element={<UpdateLiquid up={updateLiquid} />} />
           <Route
             path="/liquid"
             element={
@@ -221,10 +241,12 @@ function App() {
             path="/vapes"
             element={
               <PriveteRouter user={user}>
-                <Vapes Vape={Vape} one={getOneVape} handleClick={handleClick} 
-                term={searchTerm}
-                searchKeyword={searchHandler}
-                
+                <Vapes
+                  allVapes={vapes}
+                  one={getOneVape}
+                  handleClick={handleClick}
+                  term={searchTerm}
+                  searchKeyword={searchHandler}
                 />{' '}
               </PriveteRouter>
             }
