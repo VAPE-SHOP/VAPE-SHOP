@@ -5,7 +5,7 @@ import CloseIcon from "@material-ui/icons/Close";
 function SearchBar({ placeholder, data }) {
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
-
+// creating tow state for searching 
   const handleFilter = (event) => {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
@@ -18,13 +18,14 @@ function SearchBar({ placeholder, data }) {
     } else {
       setFilteredData(newFilter);
     }
-  };
+  }; 
+  // creating a function to save the search word and filtring the data 
 
   const clearInput = () => {
     setFilteredData([]);
     setWordEntered("");
   };
-
+// creating a function to save the set state 
   return (
     <div className="search">
       <div className="searchInputs">
@@ -39,7 +40,8 @@ function SearchBar({ placeholder, data }) {
             <SearchIcon />
           ) : (
             <CloseIcon id="clearBtn" onClick={clearInput} />
-          )}
+          )} 
+          {/* saving the input */}
         </div>
       </div>
       {filteredData.length != 0 && (
@@ -70,6 +72,8 @@ function SearchBar({ placeholder, data }) {
       )}
     </div>
   );
-}
+} 
+// maping over the filter data 
+// rendring the data 
 
 export default SearchBar;

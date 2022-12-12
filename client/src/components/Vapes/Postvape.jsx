@@ -6,7 +6,7 @@ function Postvape() {
   const [description,Setdescription] = useState("")
   const [price,Setprice] = useState("")
   const [image,Setimage] = useState("")
-  
+  // creating a state to all element 
   
   var add =() =>{
       axios.post("http://localhost:8080/vape/add",{name:name,description:description,price:price,image:image})
@@ -17,7 +17,8 @@ function Postvape() {
           Setimage(res)
       })
    
-  }
+  } 
+  // creating a function to post the data with axios 
   return (
     <div className="shop-card">
       <div className="add-card">
@@ -36,5 +37,6 @@ function Postvape() {
       </div>
     </div>
   );
-};
+}; 
+// saveng the value of all inputs and invocking the function post axios  
 export default Postvape

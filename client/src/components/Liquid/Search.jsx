@@ -6,7 +6,7 @@ function SearchBar({ placeholder, data }) {
   console.log(data,'heyyy')
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
-
+// creating tow state for searching 
   const handleFilter = (event) => {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
@@ -21,12 +21,12 @@ function SearchBar({ placeholder, data }) {
       setFilteredData(newFilter);
     }
   };
-
+ // creating a function to save the search word and filtring the data 
   const clearInput = () => {
     setFilteredData([]);
     setWordEntered("");
   };
-
+// creating a function to save the set state 
   return (
     <div className="search">
       <div className="searchInputs">
@@ -36,12 +36,14 @@ function SearchBar({ placeholder, data }) {
           value={wordEntered}
           onChange={handleFilter}
         />
+        
         <div className="searchIcon">
           {filteredData.length === 0 ? (
             <SearchIcon />
           ) : (
             <CloseIcon id="clearBtn" onClick={clearInput} />
           )}
+            {/* saving the input */}
         </div>
       </div>
       {filteredData.length != 0 && (
@@ -73,5 +75,8 @@ function SearchBar({ placeholder, data }) {
     </div>
   );
 }
+// maping over the filter data 
+// rendring the data 
+
 
 export default SearchBar;

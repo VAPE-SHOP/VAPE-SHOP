@@ -19,6 +19,7 @@ const OneVape = ({oneVape}) => {
       </div>
     </div>
   )
-};
+}; 
+//  rendring the element of one vape  
 
 export default OneVape;

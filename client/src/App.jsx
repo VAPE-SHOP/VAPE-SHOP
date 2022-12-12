@@ -28,6 +28,7 @@ import AddVape from './components/Admin/AddVape.jsx';
 function App() {
   const [vapes, setVapes] = useState([]);
   const [oneVape, setoneVape] = useState([]);
+  // creating a state for all vapes an one vape 
   const [liquid, setLiquid] = useState([]);
   const [oneLiquid, setOneLiquid] = useState([]);
   const [cart, setCart] = useState([]);
@@ -36,6 +37,7 @@ function App() {
   const [idss, setId] = useState();
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  // creating a state fol word seaech and filtre data 
   // console.log(idss);
 
   const user = {
@@ -151,7 +153,8 @@ function App() {
     } else {
       setSearchResults(contacts);
     }
-  };
+  }; 
+  // creating a function to check if the value of input exist  
 
   return (
     <BrowserRouter>
